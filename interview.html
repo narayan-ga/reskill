@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re-Skill: Interview Prep Made Easy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007acc;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header img {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            height: 50px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #e0f7ff;
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabs button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 0 0.2rem;
+        }
+
+        .tabs button.active {
+            background-color: #005f8d;
+            border-bottom: 3px solid #ffd700;
+        }
+
+        .tabs button:hover {
+            background-color: #005f8d;
+        }
+
+        .content {
+            display: none;
+            padding: 2rem;
+            margin: 1rem;
+            border: 1px solid #87ceeb;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 1rem;
+            border: 1px solid #87ceeb;
+            border-radius: 5px;
+        }
+
+        .section-header {
+            background-color: #007acc;
+            color: white;
+            padding: 0.8rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header::after {
+            content: '\25BC';
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.expanded::after {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            display: none;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
+        .question {
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+
+        .answer {
+            margin: 0.2rem 0 1rem 1rem;
+            font-style: italic;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <h1> Re-Skill </h1>
+      Interview Prep Made Easy
+    </header>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('program-manager')">Program Manager</button>
+        <button class="tab-button" onclick="showTab('scrum-master')">Scrum Master</button>
+        <button class="tab-button" onclick="showTab('business-analyst')">Business Analyst</button>
+        <button class="tab-button" onclick="showTab('product-manager')">Product Manager</button>
+    </div>
+
+    <div id="program-manager" class="content active">
+        <div class="section">
+            <div class="section-header expanded" onclick="toggleSection(this)">Technical Round</div>
+            <div class="section-content expanded">
+                <div class="question">1. What are the key responsibilities of a Program Manager?</div>
+                <div class="answer">The key responsibilities include planning, executing, and monitoring programs, ensuring alignment with business goals, and managing cross-functional teams.</div>
+                <div class="question">2. How do you prioritize tasks in a program?</div>
+                <div class="answer">Prioritization is based on factors such as business impact, urgency, resource availability, and alignment with strategic goals.</div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Behavioral</div>
+            <div class="section-content">
+                <div class="question">1. Describe a challenging program you managed and how you handled it.</div>
+                <div class="answer">I managed a program with tight deadlines and limited resources by breaking it into manageable milestones, ensuring clear communication, and optimizing resource allocation.</div>
+                <div class="question">2. How do you handle conflicts within a team?</div>
+                <div class="answer">I address conflicts by understanding each party's perspective, facilitating open communication, and finding a mutually agreeable resolution.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="scrum-master" class="content">
+        <div class="section">
+            <div class="section-header expanded" onclick="toggleSection(this)">Technical Round</div>
+            <div class="section-content expanded">
+                <div class="question">1. What is the role of a Scrum Master in Agile?</div>
+                <div class="answer">A Scrum Master facilitates the Scrum process, removes impediments, and ensures the team adheres to Agile principles.</div>
+                <div class="question">2. How do you ensure team collaboration?</div>
+                <div class="answer">By promoting open communication, conducting regular stand-ups, and fostering a culture of trust and transparency.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.content');
+            const buttons = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('expanded');
+            header.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>
